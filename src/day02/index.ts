@@ -7,9 +7,29 @@ interface Command {
   units: number
 }
 
-interface Position {
-  horizontalPosition: number,
-  depth: number
+class Position {
+  protected _horizontalPosition: number = 0;
+  protected _depth: number = 0;
+
+  get horizontalPosition() {
+    return this._horizontalPosition;
+  }
+
+  get depth() {
+    return this._depth;
+  }
+
+  moveForward(units: number) {
+    this._horizontalPosition += units;
+  }
+
+  moveDown(units: number) {
+    this._depth += units;
+  }
+
+  moveUp(units: number) {
+    this._depth -= units;
+  }
 }
 
 function isDirection(str: string): str is Direction {
@@ -30,16 +50,13 @@ const parseLine = (line: string): Command => {
 };
 
 function calculatePosition(commands: Command[]): Position {
-  const position: Position = {
-    horizontalPosition: 0,
-    depth: 0
-  };
+  const position = new Position();
 
   for (const command of commands) {
     switch (command.direction) {
-      case "forward": position.horizontalPosition += command.units; break;
-      case "down":    position.depth += command.units;              break;
-      case "up":      position.depth -= command.units;              break;
+      case "forward": position.moveForward(command.units);  break;
+      case "down":    position.moveDown(command.units);     break;
+      case "up":      position.moveUp(command.units);       break;
     }
   }
 
@@ -52,22 +69,39 @@ export function calculatePositionProduct(lines: string[]): number {
   return position.depth * position.horizontalPosition;
 }
 
+class AimedPosition extends Position {
+  private _aim: number = 0;
+
+  get horizontalPosition() {
+    return this._horizontalPosition;
+  }
+
+  get depth() {
+    return this._depth;
+  }
+
+  moveForward(units: number) {
+    this._horizontalPosition += units;
+    this._depth += this._aim * units;
+  }
+
+  aimDown(units: number) {
+    this._aim += units;
+  }
+
+  aimUp(units: number) {
+    this._aim -= units;
+  }
+}
+
 function calculateAimedPosition(commands: Command[]): Position {
-  let aim = 0;
-  
-  const position: Position = {
-    horizontalPosition: 0,
-    depth: 0
-  };
+  const position = new AimedPosition();
 
   for (const command of commands) {
     switch (command.direction) {
-      case "down":    aim += command.units; break;
-      case "up":      aim -= command.units; break;
-      case "forward":
-        position.horizontalPosition += command.units;
-        position.depth += aim * command.units;
-        break;
+      case "down":    position.aimDown(command.units);      break;
+      case "up":      position.aimUp(command.units);        break;
+      case "forward": position.moveForward(command.units);  break;
     }
   }
 
