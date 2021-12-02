@@ -1,4 +1,3 @@
-import { forOfStatement } from '@babel/types';
 import { readFile } from 'fs/promises';
 
 export async function readInput(inputPath: string) {
