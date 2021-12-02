@@ -2,10 +2,10 @@ const parseLine = (line: string) => parseInt(line, 10);
 
 function _countIncreases(measurements: number[]) {
   return measurements.reduce((increasesCount, measurement, index) => {
-    if (index > 0 && measurement > measurements[index-1]) {
-      ++increasesCount;
-    }
-    return increasesCount;
+    const nextMeasurement = measurements[index + 1];
+    return nextMeasurement && measurement < nextMeasurement
+      ? increasesCount + 1
+      : increasesCount;
   }, 0);
 }
 
