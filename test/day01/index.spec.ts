@@ -1,5 +1,6 @@
+import { resolve } from 'path';
 import { readInput } from "../../src/index";
-import { countIncreases, countSlidingWindowIncreases } from "../../src/day01/day01";
+import { countIncreases, countSlidingWindowIncreases } from "../../src/day01";
 
 const PART_1_EXAMPLE_RESULT = 7;
 const PART_1_INPUT_RESULT = 1521;
@@ -13,8 +14,8 @@ describe('day01', () => {
   let input: string[];
 
   beforeAll(async () => {
-    exampleInput = await readInput(`./src/day01/example.txt`);
-    input = await readInput("./src/day01/input.txt");
+    exampleInput = await readInput(resolve(__dirname, `../../src/day01/example.txt`));
+    input = await readInput(resolve(__dirname, `../../src/day01/input.txt`));
   });
 
   test("part 1 example", async () => {

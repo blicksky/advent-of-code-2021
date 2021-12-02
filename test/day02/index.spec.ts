@@ -1,5 +1,6 @@
+import { resolve } from 'path';
 import { readInput } from "../../src/index";
-import { calculatePositionProduct, calculateAimedPositionProduct } from "../../src/day02/day02";
+import { calculatePositionProduct, calculateAimedPositionProduct } from "../../src/day02";
 
 const PART_1_EXAMPLE_RESULT = 150;
 const PART_1_INPUT_RESULT = 1714950;
@@ -13,8 +14,8 @@ describe('day02', () => {
   let input: string[];
 
   beforeAll(async () => {
-    exampleInput = await readInput(`./src/day02/example.txt`);
-    input = await readInput("./src/day02/input.txt");
+    exampleInput = await readInput(resolve(__dirname, `../../src/day02/example.txt`));
+    input = await readInput(resolve(__dirname, `../../src/day02/input.txt`));
   });
 
   test("part 1 example", async () => {
