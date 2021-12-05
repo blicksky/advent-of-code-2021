@@ -6,7 +6,7 @@ export async function readInput(inputPath: string) {
 
     return input
         .trim()
-        .split(/[\r\n]+/);
+        .split(/\r\n|\n|\r/);
 }
 
 export async function run() {
