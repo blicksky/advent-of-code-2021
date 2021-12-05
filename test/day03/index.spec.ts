@@ -8,7 +8,7 @@ const PART_1_INPUT_RESULT = 2648450;
 const PART_2_EXAMPLE_RESULT = 230;
 const PART_2_INPUT_RESULT = 2845944;
 
-describe('day02', () => {
+describe('day03', () => {
 
   let exampleInput: string[];
   let input: string[];
