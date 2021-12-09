@@ -22,3 +22,13 @@
     }, 0);
 
 */
+
+/* part 2 (incomplete)
+
+`2199943210
+3987894921
+9856789892
+8767896789
+9899965678`.split('\n').map((heights, row) => [...heights.matchAll(/([0-8]+)/g)].map((match) => ({basinRow: match[0], column: match.index})));
+
+*/
