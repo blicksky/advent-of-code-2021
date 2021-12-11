@@ -43,7 +43,6 @@ export function getCompletionScore(inputLines: string[]) {
         })
         .filter((line) => !/[)\]}>]/.test(line))
         .map((incompleteLine) => {
-            // console.log(incompleteLine);
             return [...incompleteLine].reduceRight((score, character) => {
                 return ( score * 5 ) + scoreByIncompleteCharacter.get(character)!; 
             }, 0);
