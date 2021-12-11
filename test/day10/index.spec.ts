@@ -1,12 +1,12 @@
 import { resolve } from 'path';
 import { readInput } from "../../src/index";
-import { findErrors } from "../../src/day10";
+import { findErrors, getCompletionScore } from "../../src/day10";
 
 const PART_1_EXAMPLE_RESULT = 26397;
 const PART_1_INPUT_RESULT = 411471;
 
-// const PART_2_EXAMPLE_RESULT = ;
-// const PART_2_INPUT_RESULT = ;
+const PART_2_EXAMPLE_RESULT = 288957;
+const PART_2_INPUT_RESULT = 3122628974;
 
 describe('day01', () => {
 
@@ -27,11 +27,11 @@ describe('day01', () => {
   });
 
   test("part 2 example", async () => {
-    // expect(countSlidingWindowIncreases(exampleInput)).toEqual(PART_2_EXAMPLE_RESULT);
+    expect(getCompletionScore(exampleInput)).toEqual(PART_2_EXAMPLE_RESULT);
   });
 
   test("part 2 input", async () => {
-    // expect(countSlidingWindowIncreases(input)).toEqual(PART_2_INPUT_RESULT);
+    expect(getCompletionScore(input)).toEqual(PART_2_INPUT_RESULT);
   });
 
 });
