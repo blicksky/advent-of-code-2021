@@ -1,9 +1,12 @@
 const BOARD_SIZE = 5;
 
 class Board {
-  private rowsAndColumnsByNumber = new Map<number, { row: Set<number>, column: Set<number> }>();
-  private rows = Array.from({length: BOARD_SIZE}, () => new Set<number>());
-  private columns = Array.from({length: BOARD_SIZE}, () => new Set<number>());
+  private rowsAndColumnsByNumber = new Map<
+    number,
+    { row: Set<number>; column: Set<number> }
+  >();
+  private rows = Array.from({ length: BOARD_SIZE }, () => new Set<number>());
+  private columns = Array.from({ length: BOARD_SIZE }, () => new Set<number>());
 
   constructor(lines: string[]) {
     lines.forEach((line, rowIndex) => {
@@ -17,7 +20,7 @@ class Board {
 
           row.add(number);
           column.add(number);
-          this.rowsAndColumnsByNumber.set(number, {row, column});
+          this.rowsAndColumnsByNumber.set(number, { row, column });
         });
     });
   }
@@ -32,7 +35,10 @@ class Board {
   }
 
   isWon() {
-    return this.rows.some((row) => row.size === 0) || this.columns.some((column) => column.size === 0);
+    return (
+      this.rows.some((row) => row.size === 0) ||
+      this.columns.some((column) => column.size === 0)
+    );
   }
 
   getScore() {
@@ -48,7 +54,7 @@ export function bingo(lines: string[]) {
   const [numberLine, ...boardLines] = lines;
 
   const numbers = numberLine
-    .split(',')
+    .split(",")
     .map((numberString) => parseInt(numberString, 10));
 
   const boards = boardLines
@@ -56,8 +62,7 @@ export function bingo(lines: string[]) {
       if (boardLine.length === 0) {
         boards.push([]);
         return boards;
-      }
-      else {
+      } else {
         const board = boards[boards.length - 1];
         board.push(boardLine);
         return boards;
@@ -66,7 +71,6 @@ export function bingo(lines: string[]) {
     .map((board) => new Board(board));
 
   const remainingBoards = new Set(boards);
-
 
   for (const number of numbers) {
     for (const board of remainingBoards) {

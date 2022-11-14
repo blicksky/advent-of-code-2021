@@ -19,7 +19,10 @@ export function countSlidingWindowIncreases(lines: string[]) {
 
   const slidingWindowMeasurements = measurements
     .slice(0, -2)
-    .map((measurement, index) => measurement + measurements[index + 1] + measurements[index + 2]);
+    .map(
+      (measurement, index) =>
+        measurement + measurements[index + 1] + measurements[index + 2]
+    );
 
   return _countIncreases(slidingWindowMeasurements);
 }

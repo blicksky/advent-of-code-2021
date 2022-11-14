@@ -1,24 +1,38 @@
-import { STATEMENT_OR_BLOCK_KEYS } from '@babel/types';
-import { example } from './example'
+const example = `CH -> B
+HH -> N
+CB -> H
+NH -> C
+HB -> C
+HC -> B
+HN -> C
+NN -> C
+BH -> H
+NC -> B
+NB -> B
+BN -> B
+BB -> N
+BC -> B
+CC -> N
+CN -> C`;
 
-const [template, ruleLines] = example.split('\n\n');
-const rules = new Map(
-    ruleLines
-        .split('\n')
-        .map((ruleLine) => {
-            const [match, insertion] = ruleLine.split(' -> ');
-            return [match, insertion];
-        })
-);
+const ruleMap = example
+  .split("\n")
+  .map((line) => line.split(" -> "))
+  .reduce(
+    (ruleMap, [key, value]) => ruleMap.set(key, value),
+    new Map<string, string>()
+  );
 
-type Element = {
-    readonly left: string
-    readonly right: string
+const step = (chars: string[]): string[] =>
+  chars.reduceRight(([first, ...rest], char) => [
+    char,
+    ruleMap.get(char + first)!,
+    first,
+    ...rest,
+  ]); // why doesn't this return a string[]?
+
+let polymer = [..."NNCB"];
+for (let i = 0; i < 10; ++i) {
+  polymer = step(polymer);
 }
-
-type Start = {
-    readonly left: '^'
-    readonly righr: Element['right']
-}
-
-template.
+polymer;
