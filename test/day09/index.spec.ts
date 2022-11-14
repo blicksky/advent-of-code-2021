@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import { resolve } from "path";
 import { readInput } from "../../src/index";
 import { getRisk } from "../../src/day09";
 
@@ -8,13 +8,14 @@ const PART_1_INPUT_RESULT = 491;
 // const PART_2_EXAMPLE_RESULT = 288957;
 // const PART_2_INPUT_RESULT = 3122628974;
 
-describe('day09', () => {
-
+describe("day09", () => {
   let exampleInput: string[];
   let input: string[];
 
   beforeAll(async () => {
-    exampleInput = await readInput(resolve(__dirname, `../../src/day09/example.txt`));
+    exampleInput = await readInput(
+      resolve(__dirname, `../../src/day09/example.txt`)
+    );
     input = await readInput(resolve(__dirname, `../../src/day09/input.txt`));
   });
 
@@ -33,5 +34,4 @@ describe('day09', () => {
   test("part 2 input", async () => {
     // expect(getCompletionScore(input)).toEqual(PART_2_INPUT_RESULT);
   });
-
 });

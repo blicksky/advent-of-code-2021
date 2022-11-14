@@ -1,6 +1,9 @@
-import { resolve } from 'path';
+import { resolve } from "path";
 import { readInput } from "../../src/index";
-import { calculatePositionProduct, calculateAimedPositionProduct } from "../../src/day02";
+import {
+  calculatePositionProduct,
+  calculateAimedPositionProduct,
+} from "../../src/day02";
 
 const PART_1_EXAMPLE_RESULT = 150;
 const PART_1_INPUT_RESULT = 1714950;
@@ -8,18 +11,21 @@ const PART_1_INPUT_RESULT = 1714950;
 const PART_2_EXAMPLE_RESULT = 900;
 const PART_2_INPUT_RESULT = 1281977850;
 
-describe('day02', () => {
-
+describe("day02", () => {
   let exampleInput: string[];
   let input: string[];
 
   beforeAll(async () => {
-    exampleInput = await readInput(resolve(__dirname, `../../src/day02/example.txt`));
+    exampleInput = await readInput(
+      resolve(__dirname, `../../src/day02/example.txt`)
+    );
     input = await readInput(resolve(__dirname, `../../src/day02/input.txt`));
   });
 
   test("part 1 example", async () => {
-    expect(calculatePositionProduct(exampleInput)).toEqual(PART_1_EXAMPLE_RESULT);
+    expect(calculatePositionProduct(exampleInput)).toEqual(
+      PART_1_EXAMPLE_RESULT
+    );
   });
 
   test("part 1 input", async () => {
@@ -27,11 +33,12 @@ describe('day02', () => {
   });
 
   test("part 2 example", async () => {
-    expect(calculateAimedPositionProduct(exampleInput)).toEqual(PART_2_EXAMPLE_RESULT);
+    expect(calculateAimedPositionProduct(exampleInput)).toEqual(
+      PART_2_EXAMPLE_RESULT
+    );
   });
 
   test("part 2 input", async () => {
     expect(calculateAimedPositionProduct(input)).toEqual(PART_2_INPUT_RESULT);
   });
-
 });

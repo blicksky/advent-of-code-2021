@@ -3,8 +3,8 @@ const commandDirections = ["forward", "down", "up"] as const;
 type Direction = typeof commandDirections[number];
 
 interface Command {
-  direction: Direction,
-  units: number
+  direction: Direction;
+  units: number;
 }
 
 class Position {
@@ -37,7 +37,7 @@ function isDirection(str: string): str is Direction {
 }
 
 const parseLine = (line: string): Command => {
-  const [ direction, unitsString ] = line.split(/\s+/);
+  const [direction, unitsString] = line.split(/\s+/);
 
   if (!isDirection(direction)) {
     throw new Error(`Invalid direction: ${direction}`);
@@ -45,7 +45,7 @@ const parseLine = (line: string): Command => {
 
   return {
     direction,
-    units: parseInt(unitsString, 10)
+    units: parseInt(unitsString, 10),
   };
 };
 
@@ -54,9 +54,15 @@ function calculatePosition(commands: Command[]): Position {
 
   for (const command of commands) {
     switch (command.direction) {
-      case "forward": position.moveForward(command.units);  break;
-      case "down":    position.moveDown(command.units);     break;
-      case "up":      position.moveUp(command.units);       break;
+      case "forward":
+        position.moveForward(command.units);
+        break;
+      case "down":
+        position.moveDown(command.units);
+        break;
+      case "up":
+        position.moveUp(command.units);
+        break;
     }
   }
 
@@ -99,9 +105,15 @@ function calculateAimedPosition(commands: Command[]): Position {
 
   for (const command of commands) {
     switch (command.direction) {
-      case "down":    position.aimDown(command.units);      break;
-      case "up":      position.aimUp(command.units);        break;
-      case "forward": position.moveForward(command.units);  break;
+      case "down":
+        position.aimDown(command.units);
+        break;
+      case "up":
+        position.aimUp(command.units);
+        break;
+      case "forward":
+        position.moveForward(command.units);
+        break;
     }
   }
 
